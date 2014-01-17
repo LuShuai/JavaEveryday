@@ -24,13 +24,9 @@ public class Q6
 			}
 			System.out.print('\n');
 		}
-	}
-	
-
-	public static void rotate(char[][] ca)
-	{
 		
 	}
+	
 	
 	
 	/**
@@ -46,5 +42,4 @@ public class Q6
 		show(c);
 		
 	}
-
 }
