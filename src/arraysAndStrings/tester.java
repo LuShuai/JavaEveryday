@@ -22,7 +22,8 @@ public class tester
 	public static void main(String[] args)
 	{
 		
-		String[] s = {"OXOOOOOOO","OOOXOOOOX","OXOXOOOOX","OOOOXOOOO","XOOOOOOOX","XXOOXOXOX","OOOXOOOOO","OOOXOOOOO","OOOOOXXOO"};
+		//String[] s = {"OXOOOOOOO","OOOXOOOOX","OXOXOOOOX","OOOOXOOOO","XOOOOOOOX","XXOOXOXOX","OOOXOOOOO","OOOXOOOOO","OOOOOXXOO"};
+		String[] s = {"XXX","XOX","XXO"};
 		char[][] ca = new char[s.length][s[0].length()];
 		for(int n=0; n < ca.length; n++)
 		{
@@ -37,7 +38,8 @@ public class tester
 		System.out.println("\n\n");
 		
 		XandO t = new XandO();
-		t.solve(ca);
+		//t.solve(ca);
+		t.mark(ca);
 		print(ca);
 		
 

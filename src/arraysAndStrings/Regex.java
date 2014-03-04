@@ -37,7 +37,7 @@ public class Regex
 	
 	public static void main(String[] args)
 	{
-		System.out.println(isMatch("baaaaa",".a*"));
+		System.out.println(isMatch("aaa","a*"));
 
 	}
 

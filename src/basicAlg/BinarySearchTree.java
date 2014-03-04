@@ -1,6 +1,6 @@
 package basicAlg;
 
-public class BinerySearchTree
+public class BinarySearchTree
 {
 	TreeNode root;
 
