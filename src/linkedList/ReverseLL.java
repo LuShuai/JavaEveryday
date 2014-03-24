@@ -72,7 +72,23 @@ public class ReverseLL
 		second.next = node;
 		node.next = null;
 		return newNode;
+	}
+	
+	public static LinkedListNode newReverse(LinkedListNode head)
+	{
+		if(head == null || head.next == null)
+			return head;
 		
+		LinkedListNode sec = head.next;
+		
+		LinkedListNode newHead = newReverse(sec);
+		
+		head.next = null;
+		
+		sec.next = head;
+		
+		return newHead;
+
 	}
 	
 	
@@ -80,6 +96,6 @@ public class ReverseLL
 	public static void main(String[] args)
 	{
 		LinkedListNode.print(LinkedListNode.gen());
-		LinkedListNode.print(reverseR(LinkedListNode.gen()));
+		LinkedListNode.print(newReverse(LinkedListNode.gen()));
 	}
 }

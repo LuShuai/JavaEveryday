@@ -69,7 +69,8 @@ public class Sorts
 	
 	public static void main(String[] args)
 	{
-		int[] a = {1,4,3,6,7};
+		//int[] a = {1,4,3,6,7};
+		int[] a = {3,1,9,2,6};
 		print(a);
 		quickSort(a);
 		print(a);
