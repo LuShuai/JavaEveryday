@@ -40,23 +40,31 @@ public class SortAlgs
 				--high;
 			}
 		}
+		/*
+		 * The first case is that: 
+		 * high and low missed each other by swap and ++low, --high.
+		 * then , we could be sure that the position of high is the right position for pivot.
+		 */
 		if(list[high] < list[first] && low > high)
 		{
 			swap(list, high, first);
-			System.out.println("11111");
 			return high;
 		}
+		/*
+		 *  low and high went together in some cases
+		 */
 		else
 		{
+			//check from right to left to find the proper position for pivot.
 			while(high > first && list[high] >= list[first])
 				--high;
 			if(high == first)
 			{
 				return first;
 			}
+			//if first is reached that means list[first] is the lowest one in the current ranges and thus does not need to be swapped
 			else
 			{
-				System.out.println("333333");
 				swap(list, first, high);
 				return high;
 			}
