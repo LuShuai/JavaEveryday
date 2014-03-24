@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class FindTheTopKthLargest
+public class FindTheTopKthSmallest
 {
 	
 	public static void print(int[] a)
@@ -48,18 +48,18 @@ public class FindTheTopKthLargest
 	        	--high;
 	        }
 	    }
-	    if(list[high] < list[first])
+	    if(list[high] < list[first] && low > high)
 	    {
 	    	swap(list, first, high);
 	    	return high;
 	    }
 	    else
 	    {
-	    	while(high > low && list[high] >= list[first]  )
+	    	while(high > first && list[high] >= list[first]  )
 	    	{
 	    		--high;
 	    	}
-	    	if(high > low)
+	    	if(high > first)
 	    	{
 	    		swap(list, first, high);
 	    		return high;
@@ -118,12 +118,12 @@ public class FindTheTopKthLargest
 	{
 		int a[] = {2,1,3,6,9};
 		LinkedList<Integer> set = new LinkedList<Integer>(); 
-		//getTheTopK(a, 2,0, a.length-1, set);
-		System.out.println("[" +partition(a, 0, 2) + "]");
+		getTheTopK(a, 2,0, a.length-1, set);
+		//System.out.println("[" + partition(a, 0, 2) + "]");
 		print(a);
-		//System.out.print("result: \n");
-		//for(Integer i : set)
-		//	System.out.println(i);
+		System.out.print("result: \n");
+		for(Integer i : set)
+			System.out.println(i);
 	}
 
 }

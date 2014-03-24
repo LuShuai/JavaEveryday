@@ -11,7 +11,7 @@ public class SortAlgs
 	}
 	
 	
-	private static int partition(int[] list, int first, int last) 
+	public static int partition(int[] list, int first, int last) 
 	{
 		if(last < first)
 			return -1;
