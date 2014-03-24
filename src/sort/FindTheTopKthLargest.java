@@ -21,14 +21,12 @@ public class FindTheTopKthLargest
 	}
 	
 	
-	private static int partition(int[] list, int first, int last) 
+	public static int partition(int[] list, int first, int last) 
 	{
 		if(list.length == 1)
-			return 0;
-		//print(list);
+			return first;
 		Random random = new Random();
-		//int pivot = first + random.nextInt(last - first + 1);
-		int pivot = 5;
+		int pivot = first + random.nextInt(last - first + 1);
 		swap(list, pivot, first);
 	    int low = first + 1;
 	    int high = last;
@@ -53,43 +51,43 @@ public class FindTheTopKthLargest
 	    if(list[high] < list[first])
 	    {
 	    	swap(list, first, high);
-	    	System.out.println("after arrengement");
-	    	print(list);
 	    	return high;
 	    }
 	    else
 	    {
-	    	while(list[high] >= list[first]  )
+	    	while(high > low && list[high] >= list[first]  )
 	    	{
 	    		--high;
 	    	}
-	    	swap(list, first, high);
-	    	System.out.println("after arrengement");
-	    	print(list);
-	    	return high;
+	    	if(high > low)
+	    	{
+	    		swap(list, first, high);
+	    		return high;
+	    	}
+	    	else
+	    	{
+	    		return first;
+	    	}
 	    }
 	}
 	
 	private static void add(LinkedList<Integer> set, int[] a, int start, int end)
 	{
-		System.out.println("add" + start + " to " + end);
+		//System.out.println("add " + start + " to " + end);
 		for(int n = start; n <= end; n++)
 			set.add(a[n]);
-		if(set != null)
-		{
-			System.out.println("What's in");
-			for(Integer i : set)
-				System.out.println(i);
-		}
 	}
 	
 	public static void getTheTopK(int[] a, int k, int start, int end, LinkedList<Integer> res)
 	{
-		print(a,start,end);
-		System.out.print("k = "+k+" \n");
+		if(k > end - start + 1)
+		{
+			System.out.println("error");
+			return;
+		}
 		
 		int pivot = partition(a, start, end);
-		System.out.println("pivot" + (pivot - start));
+		//System.out.println("pivot" + (pivot - start));
 		if((pivot - start + 1) > k)
 		{
 			getTheTopK(a, k, start, pivot, res);
@@ -118,13 +116,14 @@ public class FindTheTopKthLargest
 	
 	public static void main(String[] args)
 	{
-		int a[] = {7,6,5,4,3,2,1};
+		int a[] = {2,1,3,6,9};
 		LinkedList<Integer> set = new LinkedList<Integer>(); 
-		getTheTopK(a, 4,0, a.length-1, set);
-		//System.out.println("[" +partition(a, 0, a.length-1) + "]");
-		System.out.print("result: \n");
-		for(Integer i : set)
-			System.out.println(i);
+		//getTheTopK(a, 2,0, a.length-1, set);
+		System.out.println("[" +partition(a, 0, 2) + "]");
+		print(a);
+		//System.out.print("result: \n");
+		//for(Integer i : set)
+		//	System.out.println(i);
 	}
 
 }

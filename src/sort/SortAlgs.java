@@ -1,5 +1,7 @@
 package sort;
 
+import java.util.Random;
+
 public class SortAlgs
 {
 
@@ -9,40 +11,56 @@ public class SortAlgs
 	}
 	
 	
-	private static int partition(int[] list, int first, int last) {
-	    int pivot = list[first];
-	    int low = first + 1;
-	    int high = last;
-
-	    while (high > low) {
-
-	        while (low < high && list[low] < pivot) {
-	            low++;
-	        }
-
-
-	        while (low < high && list[high] >= pivot) {
-	            high--;
-	        }
-
-
-	        if (high > low) {
-	            int temp = list[high];
-	            list[high] = list[low];
-	            list[low] = temp;
-	        }
-	    }
-	    while (high > first && list[high] >= pivot) {
-	        high--;
-	    }
-
-	    if (pivot > list[high]) {
-	        list[first] = list[high];
-	        list[high] = pivot;
-	        return high;
-	    } else {
-	        return first;
-	    }
+	private static int partition(int[] list, int first, int last) 
+	{
+		if(last < first)
+			return -1;
+		if(last == first)
+			return first;
+		
+		Random random = new Random();
+		int pivot = first + random.nextInt(last - first + 1);
+		//int pivot = 2;
+		System.out.println("pivot" + pivot);
+		swap(list, first, pivot);
+		
+		int low = first + 1;
+		int high = last;
+		
+		while(high > low)
+		{
+			while(high > low && list[low] < list[first])
+				++low;
+			while(high > low && list[high] >= list[first])
+				--high;
+			if(high > low)
+			{
+				swap(list, high, low);
+				++low;
+				--high;
+			}
+		}
+		if(list[high] < list[first] && low > high)
+		{
+			swap(list, high, first);
+			System.out.println("11111");
+			return high;
+		}
+		else
+		{
+			while(high > first && list[high] >= list[first])
+				--high;
+			if(high == first)
+			{
+				return first;
+			}
+			else
+			{
+				System.out.println("333333");
+				swap(list, first, high);
+				return high;
+			}
+		}
 	}
 	
 	
@@ -89,6 +107,9 @@ public class SortAlgs
 	
 	private static void swap(int a[], int x, int y)
 	{
+		System.out.println("swap : " + x + ", " + y);
+		if(x == y)
+			return;
 		a[x] = a[x]^a[y];
 		a[y] = a[x]^a[y];;
 		a[x] = a[x]^a[y];
@@ -98,29 +119,14 @@ public class SortAlgs
 	
 	public static void quicksort(int a[], int left, int right)
 	{
-		int i = left;
-		int j = right;
-		int m = (i+j)/2;
-		int pivot = a[m];
+		System.out.println("left " + left + "\t right "+ right);
+		show(a);
 		
-		while(i <= j)
-		{
-			while(a[i] < pivot)
-				i++;
-			while(pivot < a[j])
-				j--;
-			if(i <= j)
-			{
-				swap(a,j,i);
-			}
-			i++;
-			j--;
-		}
-		
-		if(left < j)
-			quicksort(a, left, j);
-		if(i < right)
-			quicksort(a, i, right);
+		if(left >= right)
+			return;
+		int p = partition(a, left, right);
+		quicksort(a, left, p-1);
+		quicksort(a, p + 1, right);
 	}
 	
 	public static void show(int[] a)
@@ -132,9 +138,12 @@ public class SortAlgs
 	
 	public static void main(String[] args)
 	{
-		int[] a = {3,1,9,2,6};
-		quicksort(a,0,a.length-1);
+		int[] a = {2,1,3,6,9};
+		//quicksort(a,0,a.length-1);
+		//System.out.println(partition(a, 0, 2));
+		quicksort(a, 0, a.length -1);
 		show(a);
+		
 	}
 
 }
