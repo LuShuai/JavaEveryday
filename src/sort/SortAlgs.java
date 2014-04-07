@@ -62,7 +62,8 @@ public class SortAlgs
 			{
 				return first;
 			}
-			//if first is reached that means list[first] is the lowest one in the current ranges and thus does not need to be swapped
+			//if first is reached that means list[first] is the lowest one in the current 
+			//ranges and thus does not need to be swapped
 			else
 			{
 				swap(list, first, high);
