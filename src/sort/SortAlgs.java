@@ -73,6 +73,55 @@ public class SortAlgs
 	}
 	
 	
+	public static int partition2(int[] list, int start, int end)
+	{
+		if(start > end)
+			return -1;
+		if(start == end)
+			return start;
+		
+		Random random = new Random();
+		int pivot = start + random.nextInt(end - start + 1);
+		swap(list, start, pivot);
+		
+		int left = start + 1;
+		int right = end;
+		while(right > left)
+		{
+			while(right > left && list[left] < list[start])
+				++left;
+			while(right > left && list[right] >= list[start])
+				--right;
+			if(right > left)
+			{
+				swap(list, left, right);
+				++left;
+				--right;
+			}
+		}
+		
+		if(left > right && list[right] < list[start])
+		{
+			swap(list, start, right);
+			return right;
+		}
+		else
+		{
+			if(right > start)
+			{
+				while(right > start && list[right] >= list[start])
+					--right;
+				swap(list, right, start);
+				return right;
+			}
+			else
+				return start;
+		}
+		
+	}
+	
+	
+	
 	
 	private static void mergeSort(int[] a, int low, int high)
 	{
@@ -116,7 +165,7 @@ public class SortAlgs
 	
 	private static void swap(int a[], int x, int y)
 	{
-		System.out.println("swap : " + x + ", " + y);
+		//System.out.println("swap : " + x + ", " + y);
 		if(x == y)
 			return;
 		a[x] = a[x]^a[y];
@@ -128,12 +177,12 @@ public class SortAlgs
 	
 	public static void quicksort(int a[], int left, int right)
 	{
-		System.out.println("left " + left + "\t right "+ right);
-		show(a);
+		//System.out.println("left " + left + "\t right "+ right);
+		//show(a);
 		
 		if(left >= right)
 			return;
-		int p = partition(a, left, right);
+		int p = partition2(a, left, right);
 		quicksort(a, left, p-1);
 		quicksort(a, p + 1, right);
 	}
