@@ -1,7 +1,5 @@
 package hashmap;
 
-import java.util.LinkedList;
-
 public class ChainingHashMap<K, V> implements myMap<K, V>
 {
 	private static final int INIT_CAPACITY = 4;
@@ -20,21 +18,30 @@ public class ChainingHashMap<K, V> implements myMap<K, V>
 	{
 		capacity = init_capacity;
 		buckets = (Chain<K, V>[])new Chain[capacity];
+		pair_num = 0;
 	}
 	
 	
 	@Override
-	public void put(Object key, Object value)
+	public void put(K key, V value)
 	{
+		if()
+		int index = hash(key);
+		
 		
 		
 	}
 
-	@Override
-	public V get(Object key)
+	private int hash(K key)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return (key.hashCode() & 0x7fffffff) % capacity;
+	}
+	
+	@Override
+	public V get(K key)
+	{
+		int index = hash(key);
+		return buckets[index].entry.getValue();
 	}
 
 	@Override
@@ -47,8 +54,7 @@ public class ChainingHashMap<K, V> implements myMap<K, V>
 	@Override
 	public boolean isEmpty()
 	{
-		// TODO Auto-generated method stub
-		return false;
+		return pair_num == 0;
 	}
 	
 	@Override
@@ -58,10 +64,9 @@ public class ChainingHashMap<K, V> implements myMap<K, V>
 	}
 
 	@Override
-	public boolean contains(Object key)
+	public boolean contains(K key)
 	{
-		// TODO Auto-generated method stub
-		return false;
+		return get(key) != null;
 	}
 	
 	
