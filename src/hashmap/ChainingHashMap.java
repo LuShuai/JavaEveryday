@@ -25,7 +25,6 @@ public class ChainingHashMap<K, V> implements myMap<K, V>
 	@Override
 	public void put(K key, V value)
 	{
-		if()
 		int index = hash(key);
 		
 		
