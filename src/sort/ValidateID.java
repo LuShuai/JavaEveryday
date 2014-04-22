@@ -12,22 +12,26 @@ public class ValidateID
 		int current = 0;
 		while(current < a.length)
 		{
+			//put the number in the start position into 'hand'
 			int start = current;	
 			int inHand = a[start]; 
 			while(start != inHand-1)
 			{
+				//the number in hand is not valid
 				if(inHand > a.length || inHand < 1 || a[inHand-1] == inHand)
 				{
 					return false;
 				}
 				else
 				{
+					//put the number in hand into the proper position and get a new number in
+					//that position into hand
 					int temp = a[inHand-1];
 					a[inHand-1] = inHand;
 					inHand = temp;
 				}
 			}
-			int temp = a[start];
+			//put the number in hand into start position
 			a[start] = inHand;
 			++current;
 		}
@@ -37,7 +41,7 @@ public class ValidateID
 	
 	public static void main(String[] args)
 	{
-		int[] a = {4,5,3,2,1,9};
+		int[] a = {1,2,3};
 		System.out.println(valid(a));
 	}
 
