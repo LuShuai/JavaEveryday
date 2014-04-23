@@ -5,46 +5,104 @@ import java.util.Queue;
 
 public class Chain<K, V>
 {
-	public MapEntry<K, V> entry;
-	public Chain<K, V> next;
-	
-	public Chain()
+	class Node
 	{
-		this(null, null);
-	}
-	
-	public Chain(MapEntry<K, V> e)
-	{
-		this(e, null);
-	}
-	
-	public Chain(MapEntry<K, V> e, Chain<K, V> n)
-	{
-		entry = e;
-		next = n;
-	}
-	
-	public Iterable<K> Keys()
-	{
-		Queue<K> q = new LinkedList<K>();
-		Chain<K, V> runner = this;
-		while(runner != null)
+		private K key;
+		private V value;
+		private Node next;
+		
+		public Node(K k, V v, Node node)
 		{
-			q.add(runner.entry.getKey());
-			runner = runner.next;
+			key = k;
+			value = v;
+			next = node;
 		}
-		return q;
+	}
+	
+	private int N;
+	private Node head;
+	
+	public Chain(){}
+	
+	public int size()
+	{
+		return N;
+	}
+	
+	public boolean isEmpty()
+	{
+		return N == 0;
 	}
 	
 	public V get(K key)
 	{
-		Chain<K, V> runner = this;
+		Node runner = head;
 		while(runner != null)
 		{
-			if(key == runner.entry.getKey())
-				return runner.entry.getValue();
+			if(key.equals(runner.key))
+				return runner.value;
 			runner = runner.next;
 		}
 		return null;
 	}
+	
+	public boolean contains(K key)
+	{
+		return get(key) != null;
+	}
+	
+	
+	
+	public void put(K key, V value)
+	{
+		//delete
+		if(value == null)
+		{
+			delete(key);
+			return;
+		}
+		//change
+		Node runner = head;
+		while(runner != null)
+		{
+			if(runner.key.equals(key))
+			{
+				runner.value = value;
+				return;
+			}
+		}
+		//add
+		head = new Node(key, value, head);
+		N++;
+	}
+	
+	public void delete(K key)
+	{
+		head = delete(head, key);
+	}
+	
+	private Node delete(Node head, K key)
+	{
+		if(head == null)
+			return null;
+		if(key.equals(head.key))
+		{
+			N--;
+			return head.next;
+		}
+		head.next = delete(head.next, key);
+		return head;
+	}
+	
+	public Iterable<K> keys()
+	{
+		Queue<K> queue = new LinkedList<K>();
+		Node runner = head;
+		while(runner != null)
+		{
+			queue.add(runner.key);
+		}
+		return queue;
+	}
+
 }
