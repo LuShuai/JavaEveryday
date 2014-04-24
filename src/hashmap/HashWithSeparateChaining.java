@@ -23,6 +23,7 @@ public class HashWithSeparateChaining<K, V>
 		buckets = (Chain<K, V>[]) new Chain[n];
 		for(int i = 0; i < n; i++)
 			buckets[i] = new Chain<K, V>();
+		number = 0;
 	}
 	
 	private void resize(int chains)
