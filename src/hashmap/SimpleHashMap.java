@@ -105,12 +105,12 @@ public class SimpleHashMap<K, V>
 			{
 				buckets[index].remove(n);
 				number--;
+				if(number < capacity/2 && capacity/2 >= INIT_CAPACITY)
+				{
+					resize(capacity/2);
+				}
 				return;
 			}
-		}
-		if(number < capacity/2 && capacity/2 >= INIT_CAPACITY)
-		{
-			resize(capacity/2);
 		}
 	}
 	
@@ -122,4 +122,12 @@ public class SimpleHashMap<K, V>
 				keys.add(entry.getKey());
 		return keys;
 	}
+	
+	public static void main(String[] args)
+	{
+		SimpleHashMap<Integer, Integer> test = new SimpleHashMap<Integer, Integer>();
+		test.put(1,3);
+		System.out.println(test.get(1));
+	}
+	
 }

@@ -1,29 +1,68 @@
 package someTest;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public class IteratorTest
 {
+	private int[] a;
+	myIterater it;
+	
+	public IteratorTest()
+	{
+		a = new int[5];
+		for(int n = 0; n < a.length; n++)
+			a[n] = n;
+		it = new myIterater();
+	}
+	
+	
+	public class myIterater implements Iterator<Integer>
+	{
+		int position;
+		
+		public myIterater()
+		{
+			position = 0;
+		}
+		
+		@Override
+		public boolean hasNext()
+		{
+			return position < a.length;
+		}
 
-	/**
-	 * @param args
-	 */
+		@Override
+		public Integer next()
+		{
+			int res = a[position];
+			++position;
+			return res;
+		}
+
+		@Override
+		public void remove()
+		{
+			int[] temp = new int[a.length - 1];
+			int p = 0;
+			for(int n = 0; n < a.length; n++)
+			{
+				if(n != position)
+				{
+					temp[p++] = n;
+				}
+			}
+			a = temp;
+		}
+		
+	}
+	
 	public static void main(String[] args)
 	{
-		ArrayList list = new ArrayList();
-		list.add("1");
-		list.add("2");
-		list.add("3");
-		list.add("4");
-		list.add("5");
-		
-		
-		Iterator iterator = list.iterator();
-		while(iterator.hasNext())
+		IteratorTest test = new IteratorTest();
+		myIterater it =  test.new myIterater();
+		while(it.hasNext())
 		{
-			String s = (String) iterator.next();
-			System.out.println(s);
+			System.out.println(it.next());
 		}
 	}
 
