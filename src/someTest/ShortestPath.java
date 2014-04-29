@@ -78,12 +78,6 @@ public class ShortestPath
 		ShortestPath sp = new ShortestPath();
 		System.out.println(sp.shortestPath(a));
 		*/
-		
-		HashSet<ShortestPath.node> set = new HashSet<ShortestPath.node>();
-		ShortestPath sp = new ShortestPath();
-		set.add(sp.new node(1,2));
-		ShortestPath.node node2 = sp.new node(1,2);
-		System.out.println(set.contains(node2));
 	}
 
 }
