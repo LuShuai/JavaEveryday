@@ -1,5 +1,45 @@
 package someTest;
 import hashmap.TwoKeySet;
+
+/*
+ * nd the smallest cost of traveling from (1,1) to (N,N). The cost of traveling to (i, j) is Cost[i, j].
+0 <= Cost[i,j] <= 3
+You can go 4 directions: ^, <, >, v
+
+    1 2 3 
+-----------
+1 | 0 1 2
+2 | 1 2 3
+3 | 2 2 2
+
+(1,1) -> (2, 1) -> (3, 1) -> (3, 2) -> (3, 3)
+         1      +  2      +  2      +  2
+N=3 => 7
+
+
+    0 1 2 3 4 
+---------------
+0 | 0 0 0 0 0
+1 | 3 2 3 3 0
+2 | 0 0 0 0 0
+3 | 0 3 3 3 3
+4 | 0 0 0 0 0
+
+
+N=5 => 0
+
+
+    1 2 3 4 5 6
+-----------------
+1 | 0 1 2 0 2 3
+2 | 1 2 3 0 1 1
+3 | 2 2 2 2 2 2
+4 | 0 0 1 1 1 1
+5 | 2 2 0 0 2 3
+6 | 3 3 3 0 0 0
+ */
+
+
 public class ShortestPath
 {	
 	private static final boolean D = false;
