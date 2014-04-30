@@ -1,83 +1,112 @@
 package someTest;
-
-import java.util.HashSet;
-
+import hashmap.TwoKeySet;
 public class ShortestPath
-{
-	public class node
-	{
-		int x;
-		int y;
-		public node(int a, int b)
-		{
-			x = a;
-			y = b;
-		}
-	}
-
+{	
+	private static final boolean D = false;
 	
-	 public int shortestPath(int[][] map)
-	 {
+	public int shortestPath(int[][] map)
+	{
 		if(map == null || map.length == 0 || map[0].length == 0)
 			return -1;
 		int[] min = new int[1];
 		min[0] = Integer.MAX_VALUE;
-		shortestPathHelper(map, new node(0,0), 0, new HashSet<node>(), min);
+		TwoKeySet<Integer, Integer> best = new TwoKeySet<Integer, Integer>();
+		shortestPathHelper(map, 0, 0, 0, new TwoKeySet<Integer, Integer>(), min, best);
+		//best.printAll();
 		return min[0];
-	 }
+	}
 	 
-	 private void shortestPathHelper(int[][] map, node cNode, int cCost, HashSet<node> path, int[] min)
-	 {
-		 System.out.println("checking node : " + cNode.x  + ", " + cNode.y);
-		 if(cNode.x == map.length && cNode.y == map.length)
-		 {
-			 min[0] = cCost < min[0] ? cCost : min[0];
-			 return;
-		 }
-		 //get rid of intersections
-		 if(path.contains(cNode))
-		 {
-			 return;
-		 }
-		 HashSet<node> pathSoFar = new HashSet<node>(path);
-		 pathSoFar.add(cNode);
-		 //search right
-		 if(cNode.x < map.length-1)
-		 {
-			 shortestPathHelper(map, new node(cNode.x + 1, cNode.y), cCost + map[cNode.x][cNode.y], pathSoFar, min);
-		 }
-		 //search left
-		 if(cNode.x > 0)
-		 {
-			 shortestPathHelper(map, new node(cNode.x -1, cNode.y), cCost + map[cNode.x][cNode.y], pathSoFar, min);
-		 }
-		 //search bottom
-		 if(cNode.y < map.length-1)
-		 {
-			 shortestPathHelper(map, new node(cNode.x, cNode.y + 1), cCost + map[cNode.x][cNode.y], pathSoFar, min);
-		 }
-		 //search top
-		 if(cNode.y > 0)
-		 {
-			 shortestPathHelper(map, new node(cNode.x, cNode.y-1), cCost + map[cNode.x][cNode.y], pathSoFar, min);
-		 }
-	 }
-	
+	private void shortestPathHelper(int[][] map, int row, int col, int cCost, TwoKeySet<Integer, Integer> path, int[] min, TwoKeySet<Integer, Integer> bestPath)
+	{	
+		if(row == map.length-1 && col == map.length-1)
+		{
+			if(D)
+				System.out.println("==COST=== = " + cCost);
+			//min[0] = cCost < min[0] ? cCost : min[0];
+			if(cCost < min[0])
+			{
+				min[0] = cCost;
+				bestPath = new TwoKeySet<Integer, Integer>(path);
+				if(D)
+					bestPath.printAll();
+			}
+			return;
+		}
+		//get rid of intersections
+		if(path.contains(row, col) || row > map.length-1 || col > map.length-1 || row < 0 || col < 0)
+		{
+			if(D)
+				System.out.println("row = " + row + "\tcol = " + col);
+			return;
+		}
+		if(D)
+		{
+			System.out.println("checking node : " + row  + ", " + col);
+		}
+		
+		TwoKeySet<Integer, Integer> pathSoFar = new TwoKeySet<Integer, Integer>(path);
+		pathSoFar.add(row, col);
+		//search bottom
+		if(row < map.length-1)
+		{
+			shortestPathHelper(map, row+1, col, cCost + map[row][col], pathSoFar, min, bestPath);
+		}
+		//search top
+		if(row > 0)
+		{
+			shortestPathHelper(map, row -1, col, cCost + map[row][col], pathSoFar, min, bestPath);
+		}
+		//search right
+		if(col < map.length-1)
+		{
+			shortestPathHelper(map,row, col + 1, cCost + map[row][col], pathSoFar, min, bestPath);
+		}
+		//search left
+		if(col > 0)
+		{
+			shortestPathHelper(map, row, col - 1, cCost + map[row][col], pathSoFar, min, bestPath);
+		}
+		//recover
+		pathSoFar.remove(row, col);
+	}	
 	
 	/**
 	 * @param args
 	 */
+
 	public static void main(String[] args)
 	{
-		/*
+		// should be 5
 		int[][] a = {
 				{0, 1, 2},
 				{1, 2, 3},
 				{2, 2, 2}
 		};
+		
+		//should be 0
+		int[][] b = {
+				{0, 0, 0, 0, 0},
+				{3, 2, 3, 3, 0},
+				{0, 0, 0, 0, 0},
+				{0, 3, 3, 3, 3},
+				{0, 0, 0, 0, 0}
+		};
+		
+		//should be 4
+		int[][] c = {
+				{0, 1, 2, 0, 2, 3},
+				{1, 2, 3, 0, 1, 1},
+				{2, 2, 2, 2, 2, 2},
+				{0, 0, 1, 1, 1, 1},
+				{2, 2, 0, 0, 2, 3},
+				{3, 3, 3, 0, 0, 0}
+			};
+		
 		ShortestPath sp = new ShortestPath();
-		System.out.println(sp.shortestPath(a));
-		*/
+		System.out.println("Shortest path in matrix a:" + sp.shortestPath(a)); //5
+		System.out.println("Shortest path in matrix b:" + sp.shortestPath(b)); //0
+		System.out.println("Shortest path in matrix c:" + sp.shortestPath(c)); //4
+		
 	}
 
 }

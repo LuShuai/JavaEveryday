@@ -112,10 +112,15 @@ public class TwoDHash<K1, K2, V>
 	public static void main(String[] args)
 	{
 		TwoDHash<Integer, Integer, String> map = new TwoDHash<Integer, Integer, String>();
+		System.out.println(map.size());
 		map.put(1, 1, "Hello");
+		System.out.println(map.size());
 		map.put(1, 2, ",");
+		System.out.println(map.size());
 		map.put(0, 1, "World");
+		System.out.println(map.size());
 		map.put(0, 2, "!");
+		System.out.println(map.size());
 		
 		for(int m = 1; m >=0; m--)
 			for(int n = 1; n <=2; n++)
