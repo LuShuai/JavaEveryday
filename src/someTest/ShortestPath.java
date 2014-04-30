@@ -2,7 +2,7 @@ package someTest;
 import hashmap.TwoKeySet;
 
 /*
- * nd the smallest cost of traveling from (1,1) to (N,N). The cost of traveling to (i, j) is Cost[i, j].
+ * find the smallest cost of traveling from (1,1) to (N,N). The cost of traveling to (i, j) is Cost[i, j].
 0 <= Cost[i,j] <= 3
 You can go 4 directions: ^, <, >, v
 
