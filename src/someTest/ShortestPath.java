@@ -72,6 +72,7 @@ public class ShortestPath
 			}
 			return;
 		}
+		
 		//get rid of intersections
 		if(path.contains(row, col) || row > map.length-1 || col > map.length-1 || row < 0 || col < 0)
 		{
@@ -82,6 +83,12 @@ public class ShortestPath
 		if(D)
 		{
 			System.out.println("checking node : " + row  + ", " + col);
+		}
+		
+		//pruning 
+		if(cCost + map[row][col] >= min[0])
+		{
+			return;
 		}
 		
 		TwoKeySet<Integer, Integer> pathSoFar = new TwoKeySet<Integer, Integer>(path);
