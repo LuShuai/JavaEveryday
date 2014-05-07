@@ -33,7 +33,7 @@ public class EbayRatingCalculator
 		//MathContext mc = new MathContext(400);
 		BigDecimal up =  up1.multiply(up2).multiply(new BigDecimal(G));
 		BigDecimal down = up1.multiply(up2).multiply(new BigDecimal(G)).add( do1.multiply(do2).multiply(new BigDecimal(G)));
-		return up;
+		return down;
 		
 	}
 	
@@ -42,7 +42,7 @@ public class EbayRatingCalculator
 	 */
 	public static void main(String[] args)
 	{
-		System.out.println(getBadPossibility(1000,10));
+		System.out.println(getBadPossibility(1000,50));
 	}
 
 }
