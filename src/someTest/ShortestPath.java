@@ -66,7 +66,7 @@ public class ShortestPath
 			if(cCost < min[0])
 			{
 				min[0] = cCost;
-				bestPath = new TwoKeySet<Integer, Integer>(path);
+				//bestPath.removeAll();
 				if(D)
 					bestPath.printAll();
 			}

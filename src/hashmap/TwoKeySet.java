@@ -79,6 +79,12 @@ public class TwoKeySet<K1, K2>
 		}
 	}
 	
+	public void removeAll()
+	{
+		this.set = new HashMap<K1, HashSet<K2>>();
+		size = 0;
+	}
+	
 	public void printAll()
 	{
 		for(K1 key1 : set.keySet())
