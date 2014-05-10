@@ -24,7 +24,7 @@ public class Test
 		
 		CopyGraph c = new CopyGraph();
 		
-		UndirectedGraphNode newStart = c.DFScopy(n0);
+		UndirectedGraphNode newStart = c.copy(n0);
 		
 		for(UndirectedGraphNode m: newStart.neighbors.get(0).neighbors)
 		{
