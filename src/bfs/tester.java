@@ -1,4 +1,5 @@
-package arraysAndStrings;
+package bfs;
+
 
 public class tester
 {
@@ -37,7 +38,7 @@ public class tester
 		
 		System.out.println("\n\n");
 		
-		XandO t = new XandO();
+		SurroundedRegion t = new SurroundedRegion();
 		//t.solve(ca);
 		t.mark(ca);
 		print(ca);

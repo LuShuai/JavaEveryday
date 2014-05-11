@@ -1,4 +1,4 @@
-package arraysAndStrings;
+package bfs;
 import java.util.LinkedList;
 import java.util.Queue;
 
