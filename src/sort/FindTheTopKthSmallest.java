@@ -20,6 +20,23 @@ public class FindTheTopKthSmallest
 		System.out.println();
 	}
 	
+	public static int whosKth(int[] numbers, int k, int start, int end)
+	{
+		int index = partition(numbers, start, end);
+		
+		if(index > k-1)
+		{
+			return whosKth(numbers, k, start, index - 1);
+		}
+		else if(index < k-1)
+		{
+			return whosKth(numbers, k - (index -start + 1), index + 1, end);
+		}
+		else
+		{
+			return numbers[index];
+		}
+	}
 	
 	public static int partition(int[] list, int first, int last) 
 	{
@@ -116,6 +133,7 @@ public class FindTheTopKthSmallest
 	
 	public static void main(String[] args)
 	{
+		/*
 		int a[] = {2,1,3,6,9};
 		LinkedList<Integer> set = new LinkedList<Integer>(); 
 		getTheTopK(a, 2,0, a.length-1, set);
@@ -123,7 +141,12 @@ public class FindTheTopKthSmallest
 		print(a);
 		System.out.print("result: \n");
 		for(Integer i : set)
-			System.out.println(i);
+		System.out.println(i);
+		*/
+		
+		//TODO: Error result here
+		int a[] = {2,1,3,6,9};
+		System.out.println(whosKth(a,3,0,a.length-1));
 	}
 
 }
