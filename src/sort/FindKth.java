@@ -5,26 +5,48 @@ import java.util.Random;
 
 public class FindKth
 {
-
+	private static final boolean D = false;
 	//param k : description of k
     //param numbers : array of numbers
     //return: description of return
+    public static int kthSmallestElement(int k, ArrayList<Integer> numbers) {
+       return kthSmallestElement(k, numbers, 0, numbers.size() - 1);
+    }
+    
     public static int kthLargestElement(int k, ArrayList<Integer> numbers) {
-       return kthLargestElement(k, numbers, 0, numbers.size() - 1);
+        return kthLargestElement(k, numbers, 0, numbers.size() - 1);
+     }
+    
+    private static int kthSmallestElement(int k,ArrayList<Integer> numbers, int start, int end) {
+        int index = partition(numbers, start, end);
+        if(D) {
+        print(numbers);
+        System.out.println("find : " + k + "    in start: " +start + ",    end: " + end);
+        System.out.println("index = " + index);
+        }
+        if (index - start + 1 > k) {
+            return kthSmallestElement(k, numbers, start, index - 1);
+        }
+        else if (index - start + 1 < k ){
+            return kthSmallestElement(k- (index -start + 1), numbers, index + 1, end);
+        }
+        else {
+            return numbers.get(index);
+        }
     }
     
     private static int kthLargestElement(int k,ArrayList<Integer> numbers, int start, int end) {
         int index = partition(numbers, start, end);
+        if(D) {
         print(numbers);
         System.out.println("find : " + k + "    in start: " +start + ",    end: " + end);
         System.out.println("index = " + index);
-        if(start == end)
-        	return k == 1 ? numbers.get(start) : Integer.MIN_VALUE;
-        if (index - start + 1 > k) {
-            return kthLargestElement(k, numbers, start, index - 1);
         }
-        else if (index - start + 1 < k ){
-            return kthLargestElement(k- (index -start + 1), numbers, index + 1, end);
+        if (end - index + 1 > k) {
+            return kthLargestElement(k, numbers, index + 1, end);
+        }
+        else if (end - index + 1 < k ){
+            return kthLargestElement(k- (end - index + 1), numbers, start, index -1);
         }
         else {
             return numbers.get(index);
