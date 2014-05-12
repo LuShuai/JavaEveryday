@@ -1,7 +1,7 @@
-package arraysAndStrings;
+package arrays;
 
 /* 
- * Rotate a N*N matrix by 90°
+ * Rotate a N*N matrix by 90??
  * 
  *  Shuai Lu
  *  Sep. 22

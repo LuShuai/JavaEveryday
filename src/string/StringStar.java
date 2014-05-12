@@ -1,4 +1,4 @@
-package arraysAndStrings;
+package string;
 import java.util.LinkedList;
 
 public class StringStar
