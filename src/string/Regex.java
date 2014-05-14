@@ -1,4 +1,4 @@
-package arrays;
+package string;
 
 public class Regex
 {
