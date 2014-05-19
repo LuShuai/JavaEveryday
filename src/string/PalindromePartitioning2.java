@@ -19,7 +19,7 @@ public class PalindromePartitioning2{
 			return 0;
 		}
 		boolean[][] isPa = new boolean[s.length()][s.length()];
-		int[] cutNum = new int[s.length()];
+		int[] cutNum = new int[s.length() + 1];
 		
 		for (int n = 0; n < s.length(); n++) {
 			cutNum[n] = s.length() - n;		
@@ -44,7 +44,7 @@ public class PalindromePartitioning2{
 	}
 	
 	public static void main(String[] args){
-		System.out.println(minCut("abc"));
+		System.out.println(minCut("abacc"));
 	}
 
 }
