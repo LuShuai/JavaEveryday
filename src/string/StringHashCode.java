@@ -1,4 +1,4 @@
-package someTest;
+package string;
 import basicAlg.LinkedListNode;
 
 public class StringHashCode

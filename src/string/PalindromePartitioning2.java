@@ -44,7 +44,7 @@ public class PalindromePartitioning2{
 	}
 	
 	public static void main(String[] args){
-		System.out.println(minCut("abacc"));
+		System.out.println(minCut("ababbbabbaba"));
 	}
 
 }
