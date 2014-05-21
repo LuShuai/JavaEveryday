@@ -6,7 +6,7 @@ package arrays;
  */
 
 public class InflectedArray {
-	private static final boolean D = true;
+	private static final boolean D = false;
 	
 	public static int getMax(int[] A) {
 		return getMax(A, 0, A.length - 1);
@@ -38,7 +38,7 @@ public class InflectedArray {
 	}
 	
 	public static void main(String[] args) {
-		int a[] = {1,2,4};
+		int a[] = {1,2,4,5,2};
 		System.out.println(getMax(a));
 
 	}
