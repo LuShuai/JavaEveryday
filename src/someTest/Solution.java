@@ -61,15 +61,6 @@ public class Solution
         return s == "+" || s == "-" || s == "*" || s == "/";
     }
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
     public static int removeElement(int[] A, int elem) 
     {
         if(A == null || A.length == 0)

@@ -33,8 +33,8 @@ public class CombinationSum
 	
 	public static void main(String[] args)
 	{
-		int[] a = {1};
-		System.out.println(combinationSum(a,1));
+		int[] a = {1,2,3,1,-1};
+		System.out.println(combinationSum(a,3));
 	}
 
 }
