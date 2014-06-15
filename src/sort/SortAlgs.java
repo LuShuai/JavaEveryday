@@ -10,7 +10,6 @@ public class SortAlgs
 		mergeSort(a, 0, a.length-1);	
 	}
 	
-	
 	public static int partition(int[] list, int first, int last) 
 	{
 		if(last < first)
