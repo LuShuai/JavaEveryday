@@ -27,7 +27,6 @@ public class MaxSubArray
 			//max = Math.max(max, currentSum);
 			if(currentMax >= max)
 			{
-				
 				max = currentMax;
 				maxBegin = currentBegin;
 				maxLength = currentLength;

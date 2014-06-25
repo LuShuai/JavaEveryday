@@ -71,7 +71,6 @@ public class SortAlgs
 		}
 	}
 	
-	
 	public static int partition2(int[] list, int start, int end)
 	{
 		if(start > end)
@@ -119,6 +118,46 @@ public class SortAlgs
 		
 	}
 	
+	
+	private static int partition3(int[] num, int left, int right) {
+		if (left > right) {
+			return -1;
+		}
+		if (left == right) {
+			return right;
+		}
+		
+		Random random = new Random();
+		int pivot = left + random.nextInt(right - left + 1);
+		swap(num, left, pivot);
+		
+		int low = left + 1;
+		int high = right;
+		while (high > low) {
+			while (high > low && num[high] >= num[left]) {
+				--high;
+			}
+			while (high > low && num[low] < num[left]) {
+				++low;
+			}
+			if (low < high) {
+				swap(num, low, high);
+				++low;
+				--high;
+			}
+		}
+		
+		if (low > high && num[high] < num[left]) {
+			swap(num, high, left);
+			return high;
+		} else {
+			while (high>left && num[high] >= num[left]) {
+				--high;
+			}
+			swap(num, left, high);
+			return high;
+		}
+	}
 	
 	
 	
@@ -181,7 +220,7 @@ public class SortAlgs
 		
 		if(left >= right)
 			return;
-		int p = partition2(a, left, right);
+		int p = partition3(a, left, right);
 		quicksort(a, left, p-1);
 		quicksort(a, p + 1, right);
 	}
