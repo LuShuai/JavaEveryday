@@ -59,7 +59,7 @@ public class XandO
         while(!q.isEmpty())
         {
         	node n = q.poll();
-        	//check upper node
+            //check upper node
         	if(n.X > 0 && board[n.X-1][n.Y] == 'O')
         	{
         		board[n.X-1][n.Y] = 'E';
