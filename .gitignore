@@ -5,3 +5,8 @@
 *.war
 *.ear
 /bin
+/.idea
+/.settings
+.iml
+.project
+.classpath
