@@ -6,12 +6,13 @@ import java.util.ArrayList;
  * Created by shuailu on 6/10/15.
  */
 public class VersionComparer {
+
     public static int compareVersion(String version1, String version2) {
         ArrayList<Integer> version1List = tokenizeVersion(version1);
         ArrayList<Integer> version2List = tokenizeVersion(version2);
 
         int n = 0;
-        while(true) {
+        while (true) {
             if (n < version1List.size() && n < version2List.size()) {
                 int subVersion1 = version1List.get(n);
                 int subVersion2 = version2List.get(n);
@@ -20,7 +21,7 @@ public class VersionComparer {
                 } else if (subVersion1 < subVersion2) {
                     return -1;
                 }
-            } else if(n == version1List.size() && n == version2List.size()) {
+            } else if (n == version1List.size() && n == version2List.size()) {
                 return 0;
             } else {
                 if (version1List.size() > version2List.size()) {
@@ -40,7 +41,6 @@ public class VersionComparer {
             ++n;
         }
     }
-
 
 
     private static ArrayList<Integer> tokenizeVersion(String version) {
