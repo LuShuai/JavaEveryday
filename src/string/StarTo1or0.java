@@ -24,7 +24,6 @@ public class StarTo1or0 {
 
         if (current == s.length) {
             res.add(new String(s));
-            return;
         } else {
             s[current] = '0';
             fillHelper(s, current + 1, res);

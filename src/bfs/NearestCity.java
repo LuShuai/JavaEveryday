@@ -18,8 +18,9 @@ import java.util.Random;
 
 
 public class NearestCity {
+
     public static int[][] getMap(int rowNum, int colNum) {
-        if (rowNum <=0 || colNum < 0) {
+        if (rowNum <= 0 || colNum < 0) {
             return null;
         }
         int[][] map = new int[rowNum][colNum];
@@ -27,7 +28,7 @@ public class NearestCity {
     }
 
     public List<Node> getCities(int[][] map, int cityNum) {
-        if (map == null || map.length ==0) {
+        if (map == null || map.length == 0) {
             return null;
         }
         int max = map.length * map[0].length;
@@ -56,7 +57,7 @@ public class NearestCity {
     //TEST
     public static void main(String[] args) {
         NearestCity tester = new NearestCity();
-        int map[][] = getMap(4, 5);
+        int[][] map = getMap(4, 5);
         List<Node> cities = tester.getCities(map, 19);
 
         for (Node node : cities) {
@@ -77,7 +78,6 @@ public class NearestCity {
         for (Node in : set) {
             System.out.println(in.equals(node3));
         }
-
 
         String a = "x";
         String b = "X";

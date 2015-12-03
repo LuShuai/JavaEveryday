@@ -54,5 +54,4 @@ public class StringWithStars {
             decode(s, currentString + ch, res);
         }
     }
-
 }
