@@ -47,8 +47,8 @@ public class SortAlgs {
             swap(list, high, first);
             return high;
         }
-		/*
-		 *  low and high went together in some cases
+        /*
+         *  low and high went together in some cases
 		 */
         else {
             //check from right to left to find the proper position for pivot.
@@ -152,7 +152,6 @@ public class SortAlgs {
             return high;
         }
     }
-
 
 //    private static int partitionX(int[] num, int left, int right) {
 //        if (left > right) {

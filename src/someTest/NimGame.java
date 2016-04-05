@@ -30,6 +30,6 @@ public class NimGame {
 
     public static void main(String[] args) {
         NimGame nimGame = new NimGame();
-        System.out.println(nimGame.canWinNim(1348820612));
+        System.out.println(nimGame.canWinNim(8));
     }
 }
