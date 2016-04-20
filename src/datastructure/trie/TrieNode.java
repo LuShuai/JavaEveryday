@@ -1,4 +1,4 @@
-package datastructure;
+package datastructure.trie;
 
 import java.util.HashMap;
 import java.util.Map;

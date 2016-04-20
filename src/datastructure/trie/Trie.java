@@ -1,4 +1,4 @@
-package datastructure;
+package datastructure.trie;
 
 import java.util.Map;
 
@@ -64,8 +64,8 @@ public class Trie {
 
 
 
-// Your Trie object will be instantiated and called as such:
-// Trie trie = new Trie();
+// Your trie object will be instantiated and called as such:
+// trie trie = new trie();
 // trie.insert("somestring");
 // trie.search("key");
 

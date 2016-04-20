@@ -1,5 +1,7 @@
 package datastructure;
 
+import datastructure.trie.Trie;
+
 /**
  * Created by shuailu on 8/3/15.
  */
