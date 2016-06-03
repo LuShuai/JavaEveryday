@@ -10,9 +10,6 @@ public class Ship {
     private int hp;
     List<Location> locations;
 
-    public Ship() {
-    }
-
     public Ship(List<Location> locations) {
         this.locations = locations;
         this.hp = locations.size();
