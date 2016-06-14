@@ -1,4 +1,4 @@
-package linkedList;
+package list;
 
 /**
  * Created by shuailu on 8/10/15.

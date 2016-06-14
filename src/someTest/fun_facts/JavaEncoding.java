@@ -1,4 +1,4 @@
-package fun_facts;
+package someTest.fun_facts;
 
 import java.nio.charset.Charset;
 

@@ -1,154 +1,90 @@
 package string;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
-public class TextJustification
-{
-	
-	public static ArrayList<String> fullJustify(String[] words, int L) 
-    {
-        ArrayList<String> res = new ArrayList<String>();
-        
-        if(words == null || words.length == 0)
+public class TextJustification {
+
+    public static List<String> fullJustify(String[] words, int maxWidth) {
+        List<String> res = new LinkedList<>();
+        if (words == null || words.length == 0) {
             return res;
-        
-        int word_length = 0;
-        int word_num = 0;
+        }
+        int length = words[0].length();
         int start = 0;
-        //int end = 0;
-        
-        for(int n = 0; n < words.length; n++ )
-        {
-            word_num ++;
-            word_length += words[n].length();
-            
-            if(n == words.length - 1)
-            {
-            	if(word_length + word_num - 1 <= L)
-            	{
-            		StringBuilder sb = new StringBuilder();
-            		sb.append(words[start]);
-            		for(int m = start + 1; m <= n; m++)
-            		{
-            			sb.append("-");
-            			sb.append(words[m]);
-            		}
-            		int current_len = sb.length();
-            		for(int m = 0; m < L - current_len; m++)
-            		{
-            			sb.append("-");
-            		}
-            		res.add(new String(sb));
-            	}
-            	else
-            	{
-            		res.add(arrangeWords(words, start, n-1, L));
-            		res.add(arrangeWords(words, n, n, L));
-            	}
-            	break;
-            }
-            
-            
-            if(word_length + word_num - 1 == L)
-            {
-            	res.add(arrangeWords(words, start, n, L));
-            	word_num = 0;
-            	word_length = 0;
-            	start = n + 1;
-            }
-            else if( word_length + word_num - 1 > L)
-            {
-            	res.add(arrangeWords(words, start, n-1, L));
-            	word_num = 1;
-            	word_length = words[n].length();
-            	start = n;
-            }
-            /*
-            System.out.println("\t word_num = " + word_num);
-            System.out.println("\t word_length = " + word_length);
-            if(word_length + word_num - 1 < L)
-            {
-            	end = n;
-            }
-            else if(word_length + word_num - 1 == L)
-            {
-            	System.out.println("**" + end);
-            	res.add(arrangeWords(words, start, end, L));
-            	start = n + 1;
-            	end = start;
-            	word_length = 0;
-            	word_num = 0;
-            }
-            else
-            {
-                res.add(arrangeWords(words, start, end, L));
-                start = n;
+        int end = 0;
+        for (int n = 0; n < words.length; n++) {
+            int nextLength = length + words[n].length() + 1;
+            if (nextLength <= maxWidth) {
                 end = n;
-                word_length = words[n].length();
-                word_num = 1;
-                continue;
+                length = nextLength;
+            } else {
+                res.add(justifyLine(words, start, end, maxWidth));
+                start = end = n;
+                length = words[n].length();
             }
-            
-            if(n == words.length - 1 && start < words.length)
-            {
-                
+            if (n == words.length - 1) {
+                res.add(justifyLastLine(words, start, end, maxWidth));
             }
-            */
         }
         return res;
     }
-    //arrange serveral words into a long string with proper length and number of spaces
-    private static String arrangeWords(String[] words, int start, int end, int L)
-    {
-    	System.out.println("start" + start);
-    	System.out.println("end" + end);
-        StringBuilder res = new StringBuilder();
-        //TODO: 
-        if(start == end)
-        {
-            res.append(words[start]);
-            for(int i = 0; i < L-words[start].length(); i++)
-                res.append("-");
-            return new String(res);
-        }
-        if(end < start)
-            return new String();
-        int num = end - start;   //the number of spaces should be length - 1;
-        int words_length = 0;
-        int base_space_length = 0;
-        int offset_space_length = 0;
-        for(int n = start; n <= end; n++)
-            words_length += words[n].length();
-        base_space_length = (L-words_length)/num;
-        offset_space_length = (L-words_length)%num;
-        
-        res.append(words[start]);
-        for(int n = start + 1; n <= end; n++)
-        {
-            for(int i = 0; i < base_space_length; i++)
-                res.append("-");
-            if(offset_space_length > 0)
-            {
-                res.append("-");
-                --offset_space_length;
-            }
-            res.append(words[n]);
-        }
-        return new String(res);
-    }
-	
-	public static void main(String[] args)
-	{
-		//String[] sa = {"This", "is", "an", "example", "of", "text", "justification."};
-		String[] sa = {"Listen","to","many,","speak","to","a","few."};
-		print(fullJustify(sa, 6));
 
-	}
-	
-	public static void print(ArrayList<String> as)
-	{
-		for(String s : as)
-			System.out.println("[" + s + "]");
-	}
+    private static String justifyLine(String[] words, int start, int end, int maxWidth) {
+        int blankNum = end - start;
+        if (blankNum == 0) {
+            return justifyLastLine(words, start, end, maxWidth);
+        }
+        int wordsLength = 0;
+        for (int n = start; n <= end; n++) {
+            wordsLength += words[n].length();
+        }
+        int blankLength = maxWidth - wordsLength;
+        int blank = blankLength / blankNum;
+        int padNum = blankLength % blankNum;
+        StringBuilder sb = new StringBuilder();
+        for (int n = start; n <= end; n++) {
+            sb.append(words[n]);
+            if (n != end) {
+                int between = blank;
+                if (n - start + 1 <= padNum) {
+                    between++;
+                }
+                for (int m = 0; m < between; m++) {
+                    sb.append(' ');
+                }
+            }
+        }
+        return sb.toString();
+    }
+
+    private static String justifyLastLine(String[] words, int start, int end, int maxWidth) {
+        StringBuilder sb = new StringBuilder();
+        for (int n = start; n <= end; n++) {
+            sb.append(words[n]);
+            if (n != end) {
+                sb.append(' ');
+            }
+        }
+        int paddingNum = maxWidth - sb.length();
+        for (int n = 0; n < paddingNum; n++) {
+            sb.append(' ');
+        }
+        return sb.toString();
+    }
+
+
+    public static void main(String[] args) {
+        //String[] sa = {"This", "is", "an", "example", "of", "text", "justification."};
+        String[] sa = {"Listen", "to", "many,", "speak", "to", "a", "few."};
+        print(fullJustify(sa, 6));
+
+    }
+
+    public static void print(List<String> as) {
+        for (String s : as) {
+            System.out.println("[" + s + "]");
+        }
+    }
 
 }

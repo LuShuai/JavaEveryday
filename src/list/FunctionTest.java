@@ -1,4 +1,4 @@
-package linkedList;
+package list;
 
 public class FunctionTest
 {

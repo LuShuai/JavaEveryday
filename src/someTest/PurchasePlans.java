@@ -24,7 +24,6 @@ public class PurchasePlans {
 
     private static void findPlans(int[] prices, int money, int index, LinkedList<Integer> currentList,
                                   List<List<Integer>> res) {
-        System.out.println("target: " + money + ", index: " + index);
         if (index > prices.length || money < 0) {
             return;
         }
@@ -32,6 +31,7 @@ public class PurchasePlans {
             res.add(new LinkedList<>(currentList));
             return;
         }
+        System.out.println("target: " + money + ", index: " + index);
         for (int n = index; n < prices.length; n++) {
             if (money >= prices[n]) {
                 currentList.add(n);
@@ -54,7 +54,6 @@ public class PurchasePlans {
                 return new LinkedList<>(res);
             }
         }
-
         List<LinkedList<Integer>> res = new LinkedList<>();
         if (index < 0 || index >= prices.length) {
             return res;
@@ -104,9 +103,10 @@ public class PurchasePlans {
         note.put(index, money2ResultMap);
     }
 
-
     public static void main(String[] args) {
-        int[] prices = new int[]{1, 2, 3};
-        System.out.println(findPlans(prices, 15, 0, new HashMap<Integer, Map<Integer, List<LinkedList<Integer>>>>()));
+        int[] prices = new int[]{1, 3, 6};
+        //System.out.println(findPlans(prices, 5, 0, new HashMap<Integer, Map<Integer, List<LinkedList<Integer>>>>()));
+        System.out.println(findPlans(prices, 6));
+
     }
 }
