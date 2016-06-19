@@ -25,15 +25,15 @@ public class Sqrt {
             return 0;
         }
         //binary search
-        int i = 0;
-        int j = x / 2 + 1;
-        int mid;
+        long i = 0;
+        long j = x / 2 + 1;
+        long mid;
         while (j >= i) {
             System.out.println("i = " + i + "\tj = " + j);
             mid = (j + i) / 2;
             long sqrt = mid * mid;
             if (sqrt == x) {
-                return mid;
+                return (int) mid;
             }
             if (sqrt > x) {
                 j = mid - 1;
@@ -41,7 +41,24 @@ public class Sqrt {
                 i = mid + 1;
             }
         }
-        return j;
+        return (int) j;
+    }
+
+    public static int sqrt3(int x) {
+        long i = 0;
+        long j = x / 2 + 1;
+        while (i <= j) {
+            long mid = (i + j) / 2;
+            if (mid * mid == x) {
+                return (int) mid;
+            }
+            if (mid * mid < x) {
+                i = mid + 1;
+            } else {
+                j = mid - 1;
+            }
+        }
+        return (int) j;
     }
 
     public static void main(String[] args) {
