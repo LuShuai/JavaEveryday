@@ -61,7 +61,7 @@ public class FindKth {
         Random random = new Random();
         int pivot = left + random.nextInt(right - left + 1);
         swap(numbers, left, pivot);
-        //swaping numbers
+        //swapping numbers
         int low = left + 1;
         int high = right;
         while (high > low) {
