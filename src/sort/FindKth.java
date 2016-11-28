@@ -77,7 +77,7 @@ public class FindKth {
                 --high;
             }
         }
-        //find postion of pivot
+        //find position of pivot
         if (low > high && numbers.get(high) < numbers.get(left)) {
             swap(numbers, left, high);
             return high;
@@ -110,13 +110,13 @@ public class FindKth {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        int[] a = {1, 2, 3, 4, 5, 6, 8, 9, 10, 7};
+//        int[] a = {1, 2, 3, 4, 5, 6, 8, 9, 10, 7};
+        int[] a = {1, 2, 3, 4, 5, 6, 8, 9, 1, 1};
         ArrayList<Integer> al = new ArrayList<Integer>();
         for (Integer i : a) {
             al.add(i);
         }
-        System.out.println(kthLargestElement(10, al));
+        System.out.println(kthLargestElement(7, al));
     }
 
 }

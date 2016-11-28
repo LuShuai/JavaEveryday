@@ -13,7 +13,7 @@ public class TextJustification {
         int length = words[0].length();
         int start = 0;
         int end = 0;
-        for (int n = 0; n < words.length; n++) {
+        for (int n = 1; n < words.length; n++) {
             int nextLength = length + words[n].length() + 1;
             if (nextLength <= maxWidth) {
                 end = n;

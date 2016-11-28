@@ -18,6 +18,14 @@ public class SurrodateTest {
        for (int n = 0; n < str.length(); n++) {
            if (Character.isSurrogate(str.charAt(n))) {
                System.out.println("is surrogate");
+               if (Character.isHighSurrogate(str.charAt(n))) {
+                   System.out.println("is high surrogate");
+               }
+
+               if (Character.isLowSurrogate(str.charAt(n))) {
+                   System.out.println("is low surrogate");
+               }
+
            }
        }
 
