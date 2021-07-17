@@ -1,4 +1,4 @@
 JavaEveryday
 ============
 
-Practice my java!a
+Practice my java!
